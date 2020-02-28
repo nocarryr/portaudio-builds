@@ -69,8 +69,11 @@ def unpack(archive: Path, root_dir: Path):
         shutil.unpack_archive(archive, tmp)
         for p in tmp.iterdir():
             new_p = root_dir / p.name
-            logger.debug(f'Moving {p} to {new_p}')
-            p.rename(new_p)
+            logger.debug(f'Copying {p} to {new_p}')
+            if p.is_dir():
+                shutil.copytree(str(p), str(root_dir))
+            else:
+                shutil.copy2(str(p), str(root_dir))
             contents.append(new_p)
     return contents
 
