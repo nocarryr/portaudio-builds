@@ -37,9 +37,9 @@ jobs:
       run: cp -R $ASIO_ROOT/* $PORTAUDIO_ROOT/src/hostapi/asio/
 
     - name: MSBuild
-      run: msbuild $PORTAUDIO_ROOT/build/msvc/portaudio.sln
+      run: msbuild src\portaudio\build\msvc\portaudio.sln
 
     - uses: actions/upload-artifact@v1
       with:
         name: all-src
-        path: src/
+        path: src
