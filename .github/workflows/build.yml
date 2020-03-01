@@ -38,10 +38,7 @@ jobs:
       run: cp -R $ASIO_ROOT/* $PORTAUDIO_ROOT/src/hostapi/asio/
 
     - name: MSBuild
-      run: msbuild src\portaudio\build\msvc\portaudio.sln /property:Configuration=$BUILD_CONFIG;Platform=$BUILD_PLATFORM
-      env:
-        BUILD_CONFIG: ${{ matrix.build_config }}
-        BUILD_PLATFORM: ${{ matrix.build_platform }}
+      run: msbuild src\portaudio\build\msvc\portaudio.sln /property:Configuration=${{ matrix.build_config }};Platform=${{ matrix.build_platform }}
 
     - uses: actions/upload-artifact@v1
       with:
