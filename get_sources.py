@@ -15,7 +15,7 @@ BASE_PATH = Path(__file__).resolve().parent
 DOWNLOAD_DIR = BASE_PATH / 'tmp'
 SRC_DIR = BASE_PATH / 'src'
 
-PORTAUDIO_URL = 'https://github.com/nocarryr/portaudio/archive/pa_stable_v190600_20161030.zip'
+PORTAUDIO_URL = 'https://github.com/nocarryr/portaudio/archive/vs2019.zip'
 ASIO_URL = 'https://www.steinberg.net/asiosdk'
 
 
