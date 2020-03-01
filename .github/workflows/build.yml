@@ -35,7 +35,7 @@ jobs:
       run: python get_sources.py
 
     - shell: bash
-      run: cp -R $ASIO_ROOT/* $PORTAUDIO_ROOT/src/hostapi/asio/
+      run: cp -R $ASIO_ROOT $PORTAUDIO_ROOT/src/hostapi/asio/
 
     - name: MSBuild
       run: msbuild src\portaudio\build\msvc\portaudio.sln /property:Configuration=${{ matrix.build_config }};Platform=${{ matrix.build_platform }}
