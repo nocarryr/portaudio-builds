@@ -34,7 +34,10 @@ def copy_bin(args):
 
     for fn in source_filenames:
         src_p = args.build_src / fn
-        copy(src_p, args.bin_dest)
+        dst_p = args.bin_dest / fn
+        if dst_p.suffix == '.lib':
+            dst_p = dst_p.with_name('portaudio.lib')
+        copy(src_p, dst_p)
 
 def copy_include(args):
     logger.info(f'copying includes to {args.include_dest}')
