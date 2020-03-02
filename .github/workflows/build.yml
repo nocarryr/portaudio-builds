@@ -43,7 +43,7 @@ jobs:
       run: msbuild src\portaudio\build\msvc\portaudio.sln /property:Configuration=${{ matrix.build_config }} /property:Platform=${{ matrix.build_platform }}
 
     - name: Gather outputs
-      run: python gather_outputs.py --pkg-dest $PKG_DEST --log-dest $LOG_DEST --src-root $PORTAUDIO_ROOT --platform ${{ matrix.build_platform }} --config ${{ matrix.build_config }}
+      run: python gather_outputs.py --pkg-dest ${{ env.PKG_DEST }} --log-dest ${{ env.LOG_DEST }} --src-root ${{ env.PORTAUDIO_ROOT }} --platform ${{ matrix.build_platform }} --config ${{ matrix.build_config }}
 
     - uses: actions/upload-artifact@v1
       with:
