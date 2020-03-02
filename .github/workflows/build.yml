@@ -5,8 +5,8 @@ on: [push]
 env:
   PORTAUDIO_ROOT: src/portaudio
   ASIO_ROOT: src/ASIOSDK
-  pkg_dest: build/
-  log_dest: build-logs/
+  PKG_DEST: build/
+  LOG_DEST: build-logs/
 
 jobs:
   build:
@@ -43,14 +43,14 @@ jobs:
       run: msbuild src\portaudio\build\msvc\portaudio.sln /property:Configuration=${{ matrix.build_config }} /property:Platform=${{ matrix.build_platform }}
 
     - name: Gather outputs
-      run: python gather_outputs.py --pkg-dest ${{ pkg_dest }} --log-dest ${{ log_dest }} --src-root ${{ PORTAUDIO_ROOT }} --platform ${{ matrix.build_platform }} --config ${{ matrix.build_config }}
+      run: python gather_outputs.py --pkg-dest $PKG_DEST --log-dest $LOG_DEST --src-root $PORTAUDIO_ROOT --platform ${{ matrix.build_platform }} --config ${{ matrix.build_config }}
 
     - uses: actions/upload-artifact@v1
       with:
         name: logs-${{ matrix.build_platform }}-${{ matrix.build_config }}
-        path: ${{ log_dest }}
+        path: ${{ env.LOG_DEST }}
 
     - uses: actions/upload-artifact@v1
       with:
         name: portaudio-${{ matrix.build_platform }}-${{ matrix.build_config }}
-        path: ${{ pkg_dest }}
+        path: ${{ env.PKG_DEST }}
